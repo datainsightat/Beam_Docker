@@ -7,6 +7,8 @@
 
 FROM ubuntu:20.04
 
+EXPOSE 8888
+
 ENV DEBIAN_FRONTEND noninteractive
 
 ENV JUPYTERLAB_VERSION="3.2.1"
@@ -33,7 +35,9 @@ RUN /env/bin/pip install \
     apache-beam[gcp] \
     pyparsing==2.4.2 \
     wget==3.2 \
-    jupyterlab==${JUPYTERLAB_VERSION}
+    jupyterlab==${JUPYTERLAB_VERSION} \
+    pandas \
+    numpy
 
 RUN cd /opt \
     && git clone https://github.com/googleapis/python-pubsub.git \

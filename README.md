@@ -15,11 +15,12 @@ Build the docker containers using the Dockerfiles provided in the subfolders of 
 ### Start Server
 
     $ source env/bin/activate
-    $ gcloud beta emulators pubsub start --project=myproject
     $ $(gcloud beta emulators pubsub env-init)
+    $ gcloud beta emulators pubsub start --project=myproject
 
 ### Create Topic
 
+    $ cd /opt/python-pubsub/samples/snippets    
     $ python publisher.py myproject create mytopic
 
 ### Create Subsrciption

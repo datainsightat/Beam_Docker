@@ -3,8 +3,13 @@
 # https://cloud.google.com/sdk/docs/install
 # https://cloud.google.com/pubsub/docs/emulator
 # https://github.com/googleapis/google-cloud-python#google-cloud-python-client
+# https://cloud.google.com/sdk/gcloud/reference/beta/emulators/datastore/start
 
 FROM ubuntu:20.04
+
+ENV DEBIAN_FRONTEND noninteractive
+
+ENV JUPYTERLAB_VERSION="3.2.1"
 
 RUN apt-get update -y && \
     apt-get install -y git curl wget openssh-server openssh-client net-tools
@@ -13,11 +18,7 @@ RUN apt-get update -y && \
 # PYTHON #
 ##########
 
-RUN apt-get install -y software-properties-common \
-    && add-apt-repository -y ppa:deadsnakes/ppa \
-    #&& apt-get install -y python-dev python-pip \
-    && apt-get install -y python3 python3-dev python3-venv \
-    && apt-get remove -y software-properties-common
+RUN apt-get install -y python3 python3-dev python3-venv
 
 RUN wget https://bootstrap.pypa.io/get-pip.py\
     && python3 get-pip.py
@@ -27,11 +28,15 @@ RUN python3 -m venv env
 RUN /env/bin/pip install \
     google-cloud-storage \
     google-cloud-pubsub \
-    apache-beam
+    apache-beam \
+    apache-beam[gcp] \
+    pyparsing==2.4.2 \
+    wget==3.2 \
+    jupyterlab==${JUPYTERLAB_VERSION}
 
 RUN cd /opt \
     && git clone https://github.com/googleapis/python-pubsub.git \
-    /env/bin/pip install -r /opt/python-pubsub/samples/snippets/requirements.txt
+    && /env/bin/pip install -r /opt/python-pubsub/samples/snippets/requirements.txt
 
 ###################
 # Google Services #
@@ -46,6 +51,9 @@ RUN apt-get install -y apt-transport-https ca-certificates gnupg \
         google-cloud-sdk-app-engine-python-extras \
         google-cloud-sdk-pubsub-emulator \
         google-cloud-sdk-datastore-emulator
+
+RUN mkdir /home/data
+ADD data /home/data
 
 ADD docker_start.sh /docker_start.sh
 

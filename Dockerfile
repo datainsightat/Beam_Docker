@@ -26,6 +26,7 @@ RUN wget https://bootstrap.pypa.io/get-pip.py\
 RUN python3 -m venv env
 
 RUN /env/bin/pip install \
+    wheel \
     google-cloud-storage \
     google-cloud-pubsub \
     apache-beam \

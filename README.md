@@ -8,7 +8,7 @@ Build the docker containers using the Dockerfiles provided in the subfolders of 
 
 ## Run Docker
 
-    $ docker compose up
+    $ docker-compose up
     #$ docker container run -p 8888:8888 -name beam beam
 
 ## Run PubSub

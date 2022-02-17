@@ -58,8 +58,8 @@ RUN apt-get install -y apt-transport-https ca-certificates gnupg \
         google-cloud-sdk-pubsub-emulator \
         google-cloud-sdk-datastore-emulator
 
-RUN mkdir /home/data
-ADD data /home/data
+RUN cd /home \
+    && git clone https://github.com/datainsightat/Beam_Template.git
 
 ADD docker_start.sh /docker_start.sh
 

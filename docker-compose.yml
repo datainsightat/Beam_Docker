@@ -2,15 +2,15 @@ version: "3"
 
 volumes:
 
-  pubsub:
+  home:
 
 services:
 
   pubsub:
-    image: pubsub_beam
-    container_name: pubsub_beam
-    # ports:
-    #   - "8888:8888"
+    image: beam
+    container_name: beam
+    ports:
+      - "8888:8888"
     #   - "4040:4040"
     volumes:
-      - pubsub:/home
+      - home:/home

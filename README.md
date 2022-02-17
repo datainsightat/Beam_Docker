@@ -8,7 +8,8 @@ Build the docker containers using the Dockerfiles provided in the subfolders of 
 
 ## Run Docker
 
-    $ docker container run -p 8888:8888 -name beam beam
+    $ docker compose up
+    #$ docker container run -p 8888:8888 -name beam beam
 
 ## Run PubSub
 
@@ -21,7 +22,7 @@ Build the docker containers using the Dockerfiles provided in the subfolders of 
 ### Create Topic
 
     $ cd /opt/python-pubsub/samples/snippets    
-    $ python /opt/python-pubsub/samples/snippetspublisher.py myproject create mytopic
+    $ python publisher.py myproject create mytopic
 
 ### Create Subsrciption
 

@@ -33,6 +33,7 @@ RUN /env/bin/pip install \
     google-cloud-pubsub \
     apache-beam \
     apache-beam[gcp] \
+    apache-beam[interactive] \
     pyparsing==2.4.2 \
     wget==3.2 \
     jupyterlab==${JUPYTERLAB_VERSION} \
